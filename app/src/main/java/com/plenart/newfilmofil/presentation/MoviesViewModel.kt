@@ -17,11 +17,14 @@ class MoviesViewModel : ViewModel(), KoinComponent {
     private val _movies: MutableLiveData<ArrayList<MovieDetails>> = MutableLiveData()
     private var testMovies: ArrayList<MovieDetails>? = arrayListOf()
 
+
     init {
         viewModelScope.launch {
             _movies.value = api.getPopular().body()?.results
             Log.i("TEST", "VIEW MODEL init block after api call in viewmodel")
             Log.i("TEST", "VIEW MODEL init block _movies is: ${_movies.value}")
+
+
         }
     }
 
@@ -40,7 +43,9 @@ class MoviesViewModel : ViewModel(), KoinComponent {
             Log.i("TEST", "Response not success or body == null")
         }
 
+
     }
 
 
 }
+

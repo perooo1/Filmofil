@@ -5,18 +5,14 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface TMDBApi {
+interface OMDBApi {
     @GET("/3/movie/popular")
-    suspend fun getPopular(                                                     // todo suspend fun
-        @Query("api_key") api_key: String = API_KEY
+    suspend fun getMovies(                                                     // todo suspend fun
+        @Query("apikey") api_key: String = API_KEY
     ): Response<PopularMovies>//ArrayList<MovieDetails>                                      ///or response?
 
-
     companion object {
-        const val BASE_URL = "https://api.themoviedb.org/"           //possible .org/3
-        const val API_KEY = "fb407104d1e75c75cc7a13bc3d6cffbb"
+        const val BASE_URL = "http://www.omdbapi.com/"
+        const val API_KEY = "42874e71"
     }
-
 }
-
-
