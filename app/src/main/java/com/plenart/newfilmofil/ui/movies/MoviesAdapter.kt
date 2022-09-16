@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.plenart.newfilmofil.databinding.ItemMovieBinding
 import com.plenart.newfilmofil.models.MovieDetails
 
-class MoviesAdapter: RecyclerView.Adapter<MovieViewHolder>() {
+class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
 
     private val movies = arrayListOf<MovieDetails>()
+    var onMovieSelectedListener: OnMovieSelectedListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -18,6 +19,10 @@ class MoviesAdapter: RecyclerView.Adapter<MovieViewHolder>() {
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.bind(movie)
+        onMovieSelectedListener?.let { listener ->
+            //it.onMovieSelected(movie.id)
+            holder.itemView.setOnClickListener { listener.onMovieSelected(movie.id) }
+        }
 
     }
 

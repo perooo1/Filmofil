@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.movies.movie_details.MovieDetailsFragment">
+
+    <ImageView
+        android:id="@+id/ivMovieImagePoster"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/movie_poster_img"
+        tools:src="@drawable/ic_baseline_movie_24" />
+
+    <LinearLayout
+        android:id="@+id/llMovieDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_mid"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/ivMovieImagePoster"
+        >
+
+        <TextView
+            android:id="@+id/tv_movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            tools:text="Movie name"
+            />
+
+        <TextView
+            android:id="@+id/tv_movie_year_released"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="year released"
+            />
+
+        <TextView
+            android:id="@+id/tv_movie_budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="budget"
+            />
+
+        <TextView
+            android:id="@+id/tv_movie_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="movie overview"
+            />
+
+        <TextView
+            android:id="@+id/tv_movie_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:text="movie status"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

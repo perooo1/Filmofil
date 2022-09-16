@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.plenart.newfilmofil.R
 import com.plenart.newfilmofil.databinding.FragmentMoviesBinding
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class MoviesFragment : Fragment() {
+class MoviesFragment : Fragment(), OnMovieSelectedListener {
 
     private lateinit var moviesFragmentBinding: FragmentMoviesBinding
     private lateinit var moviesAdapter: MoviesAdapter
@@ -33,12 +34,12 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //TODO init observers, listeners, setup recycler
-
+/*
         viewLifecycleOwner.lifecycleScope.launch {
             Log.i("TEST", "Movies fragmnet - inside lifecycle scope")
             viewModel.testFunction()
         }
-
+*/
         initObservers()
         setupRecyclerView()
 
@@ -53,12 +54,21 @@ class MoviesFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
+        moviesAdapter = MoviesAdapter()
+        moviesAdapter.onMovieSelectedListener = this
+
         moviesFragmentBinding.recyclerMovies.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-            moviesAdapter = MoviesAdapter()
             adapter = moviesAdapter
 
+
         }
+    }
+
+    override fun onMovieSelected(id: Long) {
+        Log.i("TOUCH", "touchy touchy id ${id.toString()}")
+        val action = MoviesFragmentDirections.actionMoviesFragmentToMovieDetailsFragment(id)
+        findNavController().navigate(action)
     }
 
 }

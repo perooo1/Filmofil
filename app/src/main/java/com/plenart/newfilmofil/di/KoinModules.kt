@@ -1,6 +1,7 @@
 package com.plenart.newfilmofil.di
 
 import com.plenart.newfilmofil.api.TMDBApi
+import com.plenart.newfilmofil.presentation.MovieDetailsViewModel
 import com.plenart.newfilmofil.presentation.MoviesViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,4 +41,7 @@ val apiModule = module {
 
 val viewModelModule = module {
     viewModel{ MoviesViewModel() }
+//    viewModel { MovieDetailsViewModel() }
+    viewModel { parametersHolder -> MovieDetailsViewModel(args = parametersHolder.get())   }
+
 }
