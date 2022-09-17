@@ -57,6 +57,11 @@ dependencies {
     implementation koin_android
     implementation koin_navigation
 
+    //Room DB
+    implementation room
+    implementation room_coroutines
+    kapt room_compiler
+
     //Retrofit
     implementation retrofit
     implementation retrofit_gson

@@ -2,6 +2,8 @@ package com.plenart.newfilmofil
 
 import android.app.Application
 import com.plenart.newfilmofil.di.apiModule
+import com.plenart.newfilmofil.di.databaseModule
+import com.plenart.newfilmofil.di.repositoryModule
 import com.plenart.newfilmofil.di.viewModelModule
 import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
@@ -19,7 +21,7 @@ class NewFilmofil: Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@NewFilmofil)
-            modules(apiModule, viewModelModule)
+            modules(apiModule, databaseModule, repositoryModule ,viewModelModule)
 
         }
 

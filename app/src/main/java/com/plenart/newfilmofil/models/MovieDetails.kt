@@ -1,16 +1,21 @@
 package com.plenart.newfilmofil.models
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "movies")
 data class MovieDetails(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String?,
-    @SerializedName("belongs_to_collection")
-    val movieCollection: MovieCollection?,                               // as in LOTR, HP, Die hard,.. franchises in general
+    //@SerializedName("belongs_to_collection")
+    //@Ignore val movieCollection: MovieCollection?,                               // as in LOTR, HP, Die hard,.. franchises in general
     val budget: Int,
-    val genres: ArrayList<Genre>,
+    //@Ignore val genres: ArrayList<Genre>,
     val homepage: String?,
+    @PrimaryKey
     val id: Long,
     @SerializedName("imdb_id")
     val imdbId: String,
@@ -20,8 +25,8 @@ data class MovieDetails(
     val popularity: Double,
     @SerializedName("poster_path")
     val posterPath: String?,
-    @SerializedName("production_companies")
-    val productionCompanies: ArrayList<ProductionCompany>,
+    //@SerializedName("production_companies")
+    //@Ignore val productionCompanies: ArrayList<ProductionCompany>,
     @SerializedName("release_date")
     val releaseDate: String,
     val revenue: Int,

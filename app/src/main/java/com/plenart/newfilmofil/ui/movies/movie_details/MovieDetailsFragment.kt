@@ -40,10 +40,18 @@ class MovieDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var film: MovieDetails? = null
+
         viewLifecycleOwner.lifecycleScope.launch {
+            film = viewModel.getMovieDetails(args.movieId)
             val m = viewModel.getMovieDetails(args.movieId)
             display(m)
         }
+
+        binding.btnAddToWatchlist.setOnClickListener {
+             film?.let { it1 -> viewModel.saveMovie(it1) }
+        }
+
     }
 
     private fun display(movie: MovieDetails?) {

@@ -19,6 +19,7 @@ class MovieViewHolder(private val binding: ItemMovieBinding): RecyclerView.ViewH
             tvMovieTitle.text = movie.title
             tvMovieYearReleased.text = movie.releaseDate
 
+
         }
     }
 

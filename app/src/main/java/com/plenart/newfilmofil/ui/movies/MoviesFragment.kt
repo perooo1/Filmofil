@@ -37,9 +37,17 @@ class MoviesFragment : Fragment(), OnMovieSelectedListener, SwipeRefreshLayout.O
         //TODO init observers, listeners, setup recycler
 
         initObservers()
+        initListeners()
         setupSearchView()
         setupRecyclerView()
 
+    }
+
+    private fun initListeners() {
+        moviesFragmentBinding.fabWatchlist.setOnClickListener {
+            val action = MoviesFragmentDirections.actionMoviesFragmentToWatchlistFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun setupSearchView() {

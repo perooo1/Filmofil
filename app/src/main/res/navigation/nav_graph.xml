@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_moviesFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_moviesFragment_to_watchlistFragment"
+            app:destination="@id/watchlistFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
@@ -22,5 +25,14 @@
         <argument
             android:name="movieId"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.plenart.newfilmofil.ui.watchlist.WatchlistFragment"
+        android:label="fragment_watchlist"
+        tools:layout="@layout/fragment_watchlist" >
+        <action
+            android:id="@+id/action_watchlistFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
     </fragment>
 </navigation>

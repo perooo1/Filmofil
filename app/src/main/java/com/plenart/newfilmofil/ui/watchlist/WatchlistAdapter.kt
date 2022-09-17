@@ -1,12 +1,14 @@
-package com.plenart.newfilmofil.ui.movies
+package com.plenart.newfilmofil.ui.watchlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.plenart.newfilmofil.databinding.ItemMovieBinding
 import com.plenart.newfilmofil.models.MovieDetails
+import com.plenart.newfilmofil.ui.movies.MovieViewHolder
+import com.plenart.newfilmofil.ui.movies.OnMovieSelectedListener
 
-class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
+class WatchlistAdapter : RecyclerView.Adapter<MovieViewHolder>() {
 
     private val movies = arrayListOf<MovieDetails>()
     var onMovieSelectedListener: OnMovieSelectedListener? = null
@@ -22,13 +24,11 @@ class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
         onMovieSelectedListener?.let { listener ->
             holder.itemView.setOnClickListener { listener.onMovieSelected(movie.id) }
         }
-
-
     }
 
     override fun getItemCount(): Int = movies.count()
 
-    fun setMovies(movies: ArrayList<MovieDetails>) {
+    fun setMoviesWatchlist(movies: ArrayList<MovieDetails>) {
         this.movies.clear()
         this.movies.addAll(movies)
         this.notifyDataSetChanged()
