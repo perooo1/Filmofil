@@ -15,37 +15,35 @@ class MoviesViewModel : ViewModel(), KoinComponent {
 
     private val api: TMDBApi by inject()
     private val _movies: MutableLiveData<ArrayList<MovieDetails>> = MutableLiveData()
-    private var testMovies: ArrayList<MovieDetails>? = arrayListOf()
-
-
-    init {
-        viewModelScope.launch {
-            _movies.value = api.getPopular().body()?.results
-            Log.i("TEST", "VIEW MODEL init block after api call in viewmodel")
-            Log.i("TEST", "VIEW MODEL init block _movies is: ${_movies.value}")
-
-
-        }
-    }
+    private val _searchResults: MutableLiveData<ArrayList<MovieDetails>> = MutableLiveData()
 
     val movies: LiveData<ArrayList<MovieDetails>>
         get() = _movies
 
-    suspend fun testFunction(){
-        Log.i("TEST", "inside test function")
-        val resp = api.getPopular()
+    val searchResults: LiveData<ArrayList<MovieDetails>>
+        get() = _searchResults
+
+    init {
+        viewModelScope.launch {
+            _movies.value = api.getPopular().body()?.results
+        }
+    }
+
+    suspend fun searchForMovie(query: String){
+        val resp = api.searchForMovie(TMDBApi.API_KEY, query)
         if( resp.isSuccessful && resp.body() != null){
-            Log.i("TEST", "resp is success and body non null")
-            testMovies = resp.body()?.results
-            Log.i("TEST", "${resp.body()}")
+            _searchResults.value = resp.body()?.results
         }
         else{
-            Log.i("TEST", "Response not success or body == null")
+            Log.i("TEST", "search Response not success or body == null")
         }
 
 
     }
 
+    fun clearSearchedMovie(){
+        this._searchResults.value?.clear()
+    }
 
 }
 

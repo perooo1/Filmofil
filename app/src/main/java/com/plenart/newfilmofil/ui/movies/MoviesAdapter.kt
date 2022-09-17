@@ -20,7 +20,6 @@ class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
         val movie = movies[position]
         holder.bind(movie)
         onMovieSelectedListener?.let { listener ->
-            //it.onMovieSelected(movie.id)
             holder.itemView.setOnClickListener { listener.onMovieSelected(movie.id) }
         }
 
@@ -29,6 +28,7 @@ class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
     override fun getItemCount(): Int = movies.count()
 
     fun setMovies(movies: ArrayList<MovieDetails>) {
+        this.movies.clear()
         this.movies.addAll(movies)
         this.notifyDataSetChanged()
     }

@@ -19,6 +19,12 @@ interface TMDBApi {
         @Query("api_key") api_key: String = API_KEY
     ): Response<MovieDetails>
 
+    @GET("/3/search/movie")
+    suspend fun searchForMovie(
+        @Query("api_key") api_key: String = API_KEY,
+        @Query("query") query: String
+    ): Response<PopularMovies>
+
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/"
         const val API_KEY = "fb407104d1e75c75cc7a13bc3d6cffbb"
