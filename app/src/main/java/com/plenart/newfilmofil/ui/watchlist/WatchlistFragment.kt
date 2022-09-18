@@ -2,14 +2,12 @@ package com.plenart.newfilmofil.ui.watchlist
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.plenart.newfilmofil.R
-import com.plenart.newfilmofil.databinding.FragmentMovieDetailsBinding
 import com.plenart.newfilmofil.databinding.FragmentWatchlistBinding
 import com.plenart.newfilmofil.presentation.WatchlistViewModel
 import com.plenart.newfilmofil.ui.movies.OnMovieSelectedListener
@@ -36,7 +34,6 @@ class WatchlistFragment : Fragment(), OnMovieSelectedListener {
 
         initObservers()
         setupRecyclerView()
-
     }
 
     private fun setupRecyclerView() {
@@ -51,13 +48,11 @@ class WatchlistFragment : Fragment(), OnMovieSelectedListener {
     }
 
     private fun initObservers() {
-
         viewModel.movies.observe(viewLifecycleOwner){
             if(it != null && it.isNotEmpty()){
                 watchlistAdapter.setMoviesWatchlist(it)
             }
         }
-
     }
 
     override fun onMovieSelected(id: Long) {
@@ -65,6 +60,5 @@ class WatchlistFragment : Fragment(), OnMovieSelectedListener {
         val action = WatchlistFragmentDirections.actionWatchlistFragmentToMovieDetailsFragment(id)
         findNavController().navigate(action)
     }
-
 
 }

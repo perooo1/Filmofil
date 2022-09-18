@@ -64,8 +64,8 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    viewModel{ MoviesViewModel() }
-    viewModel { parametersHolder -> MovieDetailsViewModel(args = parametersHolder.get(), repo = get())   }
+    viewModel { MoviesViewModel() }
+    viewModel { MovieDetailsViewModel(repo = get()) }
     viewModel { WatchlistViewModel(get()) }
 
 }

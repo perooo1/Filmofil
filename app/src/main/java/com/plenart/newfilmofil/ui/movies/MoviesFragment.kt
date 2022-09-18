@@ -1,7 +1,6 @@
 package com.plenart.newfilmofil.ui.movies
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +33,6 @@ class MoviesFragment : Fragment(), OnMovieSelectedListener, SwipeRefreshLayout.O
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO init observers, listeners, setup recycler
 
         initObservers()
         initListeners()
@@ -91,23 +89,17 @@ class MoviesFragment : Fragment(), OnMovieSelectedListener, SwipeRefreshLayout.O
         moviesFragmentBinding.recyclerMovies.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = moviesAdapter
-
-
         }
 
         moviesFragmentBinding.swipeRefreshLayout.setOnRefreshListener(this)
-
-
     }
 
     override fun onMovieSelected(id: Long) {
-        Log.i("TOUCH", "touchy touchy id ${id.toString()}")
         val action = MoviesFragmentDirections.actionMoviesFragmentToMovieDetailsFragment(id)
         findNavController().navigate(action)
     }
 
     override fun onRefresh() {
-        Log.i("REFRESH", "IN REFRESH override")
         moviesAdapter.setMovies(viewModel.movies.value!!)
         viewModel.clearSearchedMovie()
         moviesFragmentBinding.swipeRefreshLayout.isRefreshing = false

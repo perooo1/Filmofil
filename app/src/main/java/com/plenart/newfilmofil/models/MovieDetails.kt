@@ -10,10 +10,7 @@ data class MovieDetails(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String?,
-    //@SerializedName("belongs_to_collection")
-    //@Ignore val movieCollection: MovieCollection?,                               // as in LOTR, HP, Die hard,.. franchises in general
     val budget: Int,
-    //@Ignore val genres: ArrayList<Genre>,
     val homepage: String?,
     @PrimaryKey
     val id: Long,
@@ -25,8 +22,6 @@ data class MovieDetails(
     val popularity: Double,
     @SerializedName("poster_path")
     val posterPath: String?,
-    //@SerializedName("production_companies")
-    //@Ignore val productionCompanies: ArrayList<ProductionCompany>,
     @SerializedName("release_date")
     val releaseDate: String,
     val revenue: Int,

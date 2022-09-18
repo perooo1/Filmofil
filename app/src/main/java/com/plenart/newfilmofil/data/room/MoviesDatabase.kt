@@ -13,7 +13,6 @@ import com.plenart.newfilmofil.models.MovieDetails
     version = 1,
     exportSchema = false
 )
-//@TypeConverters(GenreConverter::class,MovieCollectionConverter::class, ProductionCompanyConverter::class)
 abstract class MoviesDatabase : RoomDatabase() {
 
     abstract fun getMovieDao(): MovieDao
@@ -38,8 +37,8 @@ abstract class MoviesDatabase : RoomDatabase() {
                 context.applicationContext,
                 MoviesDatabase::class.java,
                 databaseName
-            ).allowMainThreadQueries()                  //change
-                .build()    //added typeconverter ------  .addTypeConverter(MovieCollectionConverter::class.java)
+            ).allowMainThreadQueries()
+                .build()
         }
 
     }

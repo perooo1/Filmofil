@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.plenart.newfilmofil.data.repository.MovieRepository
 import com.plenart.newfilmofil.models.MovieDetails
 
-class WatchlistViewModel(val repository: MovieRepository): ViewModel() {
+class WatchlistViewModel(private val repository: MovieRepository): ViewModel() {
 
     private val _movies: MutableLiveData<ArrayList<MovieDetails>> = MutableLiveData()
 

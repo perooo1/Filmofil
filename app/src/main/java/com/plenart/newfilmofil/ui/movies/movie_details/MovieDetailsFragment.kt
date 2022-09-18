@@ -14,10 +14,6 @@ import com.plenart.newfilmofil.presentation.MovieDetailsViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
-import java.time.LocalDate
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 
 class MovieDetailsFragment : Fragment() {
@@ -37,23 +33,21 @@ class MovieDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var film: MovieDetails? = null
+        var m: MovieDetails? = null
 
         viewLifecycleOwner.lifecycleScope.launch {
-            film = viewModel.getMovieDetails(args.movieId)
-            val m = viewModel.getMovieDetails(args.movieId)
+            m = viewModel.getMovieDetails(args.movieId)
             display(m)
         }
 
         binding.btnAddToWatchlist.setOnClickListener {
-             film?.let { it1 -> viewModel.saveMovie(it1) }
+            m?.let { it1 -> viewModel.saveMovie(it1) }
         }
 
     }
 
     private fun display(movie: MovieDetails?) {
         movie.let {
-            val posterURL = "https://image.tmdb.org/t/p/w342" + movie!!.posterPath
             val backdropURL = "https://image.tmdb.org/t/p/w1280" + movie!!.backdropPath
             binding.apply {
                 Glide.with(requireContext()).load(backdropURL).centerCrop().into(ivMovieBackdrop)
@@ -68,16 +62,15 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
-    private fun calculateStarRating(voteAvg: Double): Int{
-        return when{
-            voteAvg <= 5.0  -> 1
+    private fun calculateStarRating(voteAvg: Double): Int {
+        return when {
+            voteAvg <= 5.0 -> 1
             voteAvg > 5.0 && voteAvg <= 6.5 -> 2
             voteAvg > 6.5 && voteAvg <= 7.5 -> 3
             voteAvg > 7.5 && voteAvg <= 8.4 -> 4
             else -> 5
         }
     }
-
 
 
 }

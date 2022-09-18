@@ -1,6 +1,5 @@
 package com.plenart.newfilmofil.ui.movies
 
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.plenart.newfilmofil.databinding.ItemMovieBinding
@@ -11,7 +10,6 @@ class MovieViewHolder(private val binding: ItemMovieBinding): RecyclerView.ViewH
     fun bind(movie: MovieDetails){
         val posterImgURL = "https://image.tmdb.org/t/p/w342" + movie.posterPath
         binding.apply {
-            Log.i("TEST", "$posterImgURL")
             Glide.with(itemView).load(posterImgURL).into(ivMovieImage)
             tvMovieTitle.text = movie.title
             tvMovieVoteAvg.text = movie.voteAverage.toString()

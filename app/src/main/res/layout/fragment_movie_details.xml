@@ -9,7 +9,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
 
         <ImageView
@@ -104,10 +103,9 @@
                     android:id="@+id/iv_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_monetization_on_24"
-                    android:padding="@dimen/margin_small"
                     android:layout_marginLeft="@dimen/margin_small"
-                    />
+                    android:padding="@dimen/margin_small"
+                    android:src="@drawable/ic_baseline_monetization_on_24" />
 
             </LinearLayout>
 
@@ -139,10 +137,9 @@
                     android:id="@+id/iv_money_revenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_monetization_on_24"
-                    android:padding="@dimen/margin_small"
                     android:layout_marginLeft="@dimen/margin_small"
-                    />
+                    android:padding="@dimen/margin_small"
+                    android:src="@drawable/ic_baseline_monetization_on_24" />
 
             </LinearLayout>
 

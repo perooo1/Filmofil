@@ -22,8 +22,6 @@ class MoviesAdapter : RecyclerView.Adapter<MovieViewHolder>() {
         onMovieSelectedListener?.let { listener ->
             holder.itemView.setOnClickListener { listener.onMovieSelected(movie.id) }
         }
-
-
     }
 
     override fun getItemCount(): Int = movies.count()

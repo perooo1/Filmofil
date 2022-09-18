@@ -1,8 +1,7 @@
 package com.plenart.newfilmofil.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.plenart.newfilmofil.R
+import androidx.appcompat.app.AppCompatActivity
 import com.plenart.newfilmofil.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

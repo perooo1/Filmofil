@@ -80,12 +80,15 @@ dependencies {
     implementation liveData
     kapt lifecycleKapt
 
-    implementation 'com.github.bumptech.glide:glide:4.13.2'
-    kapt 'com.github.bumptech.glide:compiler:4.13.2'
+    //Glide
+    implementation glide
+    kapt glide_compiler
 
-    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    //OkHttpLoggingInterceptor
+    implementation logging_interceptor
 
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    //SwipeRefreshLayout
+    implementation swipe_refresh_layout
 
 
 }
