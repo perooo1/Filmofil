@@ -1,9 +1,6 @@
 package com.plenart.newfilmofil.ui.movies.movie_details
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +8,16 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.plenart.newfilmofil.R
 import com.plenart.newfilmofil.databinding.FragmentMovieDetailsBinding
 import com.plenart.newfilmofil.models.MovieDetails
 import com.plenart.newfilmofil.presentation.MovieDetailsViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import java.time.LocalDate
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.concurrent.timerTask
 
 
 class MovieDetailsFragment : Fragment() {
@@ -56,16 +53,31 @@ class MovieDetailsFragment : Fragment() {
 
     private fun display(movie: MovieDetails?) {
         movie.let {
-            val imgURL = "https://image.tmdb.org/t/p/w342" + movie!!.posterPath
+            val posterURL = "https://image.tmdb.org/t/p/w342" + movie!!.posterPath
+            val backdropURL = "https://image.tmdb.org/t/p/w1280" + movie!!.backdropPath
             binding.apply {
-                Glide.with(requireContext()).load(imgURL).into(ivMovieImagePoster)
+                Glide.with(requireContext()).load(backdropURL).centerCrop().into(ivMovieBackdrop)
                 tvMovieTitle.text = movie!!.title
-                tvMovieYearReleased.text = movie.releaseDate
-                tvMovieBudget.text = movie.budget.toString()
-                tvMovieOverview.text = movie.overview
                 tvMovieStatus.text = movie.status
+                tvMovieYearReleased.text = movie.releaseDate
+                ratingBar.numStars = calculateStarRating(movie.voteAverage)
+                tvMovieOverview.text = movie.overview
+                tvMovieBudget.text = movie.budget.toString()
+                tvMovieRevenue.text = movie.revenue.toString()
             }
         }
     }
+
+    private fun calculateStarRating(voteAvg: Double): Int{
+        return when{
+            voteAvg <= 5.0  -> 1
+            voteAvg > 5.0 && voteAvg <= 6.5 -> 2
+            voteAvg > 6.5 && voteAvg <= 7.5 -> 3
+            voteAvg > 7.5 && voteAvg <= 8.4 -> 4
+            else -> 5
+        }
+    }
+
+
 
 }

@@ -9,17 +9,24 @@ import com.plenart.newfilmofil.models.MovieDetails
 class MovieViewHolder(private val binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(movie: MovieDetails){
-        val imgURL = "https://image.tmdb.org/t/p/w342" + movie.posterPath
-
-
+        val posterImgURL = "https://image.tmdb.org/t/p/w342" + movie.posterPath
         binding.apply {
-            Log.i("TEST", "$imgURL")
-            Glide.with(itemView).load(imgURL).into(ivMovieImage)
-            //Glide.with(itemView).load(movie.posterPath).into(ivMovieImage)                //potential error due to itemView
+            Log.i("TEST", "$posterImgURL")
+            Glide.with(itemView).load(posterImgURL).into(ivMovieImage)
             tvMovieTitle.text = movie.title
-            tvMovieYearReleased.text = movie.releaseDate
+            tvMovieVoteAvg.text = movie.voteAverage.toString()
+            ratingBar.numStars = calculateStarRating(movie.voteAverage)
 
+        }
+    }
 
+    private fun calculateStarRating(voteAvg: Double): Int{
+        return when{
+            voteAvg <= 5.0  -> 1
+            voteAvg > 5.0 && voteAvg <= 6.5 -> 2
+            voteAvg > 6.5 && voteAvg <= 7.5 -> 3
+            voteAvg > 7.5 && voteAvg <= 8.4 -> 4
+            else -> 5
         }
     }
 
